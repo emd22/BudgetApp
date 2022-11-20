@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, Component } from 'react';
+import { StyleSheet, Text, View, Button, ScrollView, TextInput, StatusBarStyle, StatusBar } from 'react-native';
+import {setStatusBarHidden} from "expo-status-bar";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+class BalanceHeader extends Component {
+  render() {
+    return (
+        <Text style={styles.header}>
+          {this.props.children}
+        </Text>
+    );
+  }
 }
 
+const App = () =>  {
+  setStatusBarHidden(false, "slide");
+  return (
+      <View style={styles.container}>
+        <BalanceHeader>${balance}</BalanceHeader>
+      </View>
+  );
+}
+let balance = 94.26;
+
 const styles = StyleSheet.create({
+  header: {
+    fontSize: 30,
+    fontWeight: '300',
+  },
   container: {
     flex: 1,
+    fontWeight: 'thin',
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
+
+export default App;
